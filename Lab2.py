@@ -12,10 +12,6 @@ class Hero:
         """Определяет, будет ли разведка успешной."""
         success_chance = random.random()  # случайное число от 0 до 1
         return success_chance < 0.6  # шанс успеха
-    def mana_reg(self):
-        if self.mana<50:
-            self.mage.mana+=5
-
 
 # Класс Warrior - наследуется от Hero, для воинов
 class Warrior(Hero):
@@ -40,6 +36,9 @@ class Mage(Hero):
             self.mana -= 10  # Расход маны
             return True
         return False
+    def mana_reg(self):
+        if self.mana<50:
+            self.mana+=5
 
 # Класс Kingdom - управление королевством
 class Kingdom:
