@@ -11,7 +11,7 @@ class Hero:
     def go_on_scouting(self):
         """Определяет, будет ли разведка успешной."""
         success_chance = random.random()  # случайное число от 0 до 1
-        return success_chance < 0.6  # 70% шанс успеха
+        return success_chance < 0.6  # шанс успеха
     def mana_reg(self):
         if self.mana<50:
             self.mage.mana+=5
