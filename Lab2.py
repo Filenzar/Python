@@ -12,6 +12,9 @@ class Hero:
         """Определяет, будет ли разведка успешной."""
         success_chance = random.random()  # случайное число от 0 до 1
         return success_chance < 0.6  # шанс успеха
+    def escape(self,enemy_level):
+        escape_chance = 0.5 + (self.level - enemy_level) * 0.1 
+        return random.random() < escape_chance
 
 # Класс Warrior - наследуется от Hero, для воинов
 class Warrior(Hero):
@@ -58,9 +61,6 @@ class Kingdom:
             self.food -= 10 * hero.level
             self.territory -= 5 * hero.level
 
-    def escape(self, hero,enemy_level):
-        escape_chance = 0.5 + (hero.level - enemy_level) * 0.1 
-        return random.random() < escape_chance
     def resources_event(self, success, hero):
         """Управление ресурсами в зависимости от результата разведки."""
         if success:
@@ -85,7 +85,7 @@ class Kingdom:
                     hero.level = 3
                     self.show_status()
             if action == "2": 
-                if self.escape(hero,enemy_level):
+                if hero.escape(enemy_level):
                     print(f"{hero.name} сбежал с продовольствием.")
                     self.feed_people(hero,True)
                 else:
@@ -145,6 +145,4 @@ def main():
             if (hero!= mage):
                 mage.mana_reg()
         
-
-
 main()
